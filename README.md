@@ -1,6 +1,6 @@
 # world_time_app
 
-Modified from app from The Net Ninja's tutorial https://www.youtube.com/watch?v=1ukSR1GRtMU&list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ
+Modified app from The Net Ninja's tutorial https://www.youtube.com/watch?v=1ukSR1GRtMU&list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ
 
 Major Changes:
 - Added all supported locations from the API
