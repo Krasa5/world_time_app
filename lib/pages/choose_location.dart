@@ -21,15 +21,18 @@ class _ChooseLocationState extends State<ChooseLocation> {
     Response response = await get('http://worldtimeapi.org/api/timezone');
     List data = jsonDecode(response.body);
     final List data2 = data;
+    // if filteredlocation is empty then fill it with the default list from data
     if (filteredLocations.isEmpty) {
       setState(() {
         locations = [for (String url in data) WorldTime(url: url)];
         filteredLocations = data;
       });
+      // filteredlocation is not empty meaning getlocs was initialized by _filtercountries
     } else {
       setState(() {
         locations = [for (String url in filteredLocations) WorldTime(url: url)];
       });
+      // after succesfully running filteredlocation list will be reset to default list from data
       filteredLocations = data2;
     }
   }
@@ -48,21 +51,22 @@ class _ChooseLocationState extends State<ChooseLocation> {
   @override
   void initState() {
     super.initState();
+    // when this page is first opened, will run and get the locations
     getLocs();
   }
 
   void _filterCountries(value) {
-    //remove all elements in list which contains "Africa"
     filteredLocations
         .removeWhere((element) => !element.toLowerCase().contains(value));
     print(filteredLocations);
     if (filteredLocations.isEmpty) {
+      // creates a toast if city is not found
       Fluttertoast.showToast(
-          msg: "Not found.",
+          msg: "City not found",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
+          gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.grey,
           textColor: Colors.white,
           fontSize: 16.0);
     } else {
